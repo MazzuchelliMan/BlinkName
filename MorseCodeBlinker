@@ -1,0 +1,58 @@
+/*
+#include <string>
+#include <iostream>
+using namespace std;
+*/
+
+int morseLED = D7;
+
+void setup() {
+    pinMode(morseLED, OUTPUT);
+    
+    
+    char* morseCode[26] = {".-", "-...", "-.-.", "-..",".", "..-.", "--.", "....", "..", ".---",
+                   "-.-", ".-..", "--", "-.", "---", ".--.", "--.-", ".-.", "...", "-",
+                   "..-", "...-", ".--", "-..-", "-.--", "--.."};
+                   
+    char* alphabet[26] = {"A", "B", "C", "D", "E", "F", "G", "H", "I", "J",
+                    "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T",
+                    "U", "V", "W", "X", "Y", "Z"};
+    
+    char* name[4] = {"J", "O", "H", "N"};
+    
+    //For letter in name
+    for (int i = 0; i < 4; i++)
+    {
+
+        //For letter in alphabet
+        for (int j = 0; j < 26; j++)
+        {
+            if (name[i] == alphabet[j])
+            {
+                //For char in morseCode letter LENGTH equivelant
+                for (int k = 0; k < strlen(morseCode[j]); k++)
+                {
+                    if (morseCode[j][k] == '.')
+                    {
+                        digitalWrite(morseLED, HIGH);
+                        delay(200);
+                        digitalWrite(morseLED, LOW);
+                        delay(200);
+                    }
+                    else if (morseCode[j][k] == '-')
+                    {
+                        digitalWrite(morseLED, HIGH);
+                        delay(400);
+                        digitalWrite(morseLED, LOW);
+                        delay(200);
+                    }
+                }
+                delay(1000);
+            }
+        }
+    }
+}
+
+void loop() {
+
+}
